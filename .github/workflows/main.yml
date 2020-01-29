@@ -1,0 +1,24 @@
+name: main
+
+on: push
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 1
+  second:
+    needs: first
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 2
+  third:
+    needs: first
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 3
+  fourth:
+    needs: [second, third]
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 4
