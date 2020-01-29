@@ -6,19 +6,20 @@ jobs:
   first:
     runs-on: ubuntu-latest
     steps:
-    - run: echo 1
+    - run: exit 0
   second:
     needs: first
     runs-on: ubuntu-latest
     steps:
-    - run: echo 2
+    - run: exit 0
   third:
     needs: first
     runs-on: ubuntu-latest
     steps:
-    - run: echo 3
+    - run: exit 1
   fourth:
+    if: always() # run this job even if one of its dependent job fails
     needs: [second, third]
     runs-on: ubuntu-latest
     steps:
-    - run: echo 4
+    - run: exit 0
